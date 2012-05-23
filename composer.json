@@ -1,0 +1,7 @@
+{
+    "require": {
+        "php":          ">=5.3.2",
+        "EHER/PHPUnit": ">=1.2",
+        "phing/phing": ">=2.4.12"
+    }
+}

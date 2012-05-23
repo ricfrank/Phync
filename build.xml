@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Sync me baby" default="dist" basedir=".">
+	<target name="sync">
+		<exec command="rsync -avz ${project.basedir} riccardo@tcf.dyndns-web.com:/home/riccardo/" escape="false" returnProperty="retrun_code" outputProperty="output_message" />	
+      </target>
+</project>

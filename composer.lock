@@ -1,0 +1,35 @@
+{
+    "hash": "4402d1fadb540d11c508a2a0b3eac974",
+    "packages": [
+        {
+            "package": "EHER/PHPUnit",
+            "version": "dev-master",
+            "source-reference": "ded635c4d87e48e10efdcf9ea0294919dc71eba8"
+        },
+        {
+            "package": "phing/phing",
+            "version": "dev-master",
+            "source-reference": "4870cffcd2fc00b4ba57c675575780e716cf7e26"
+        },
+        {
+            "package": "symfony/finder",
+            "version": "dev-master",
+            "source-reference": "a2cef64d5072b284b671ee8e06b8ebc38c2969e1",
+            "alias-pretty-version": "2.1.x-dev",
+            "alias-version": "2.1.9999999.9999999-dev"
+        },
+        {
+            "package": "symfony/finder",
+            "version": "dev-master",
+            "source-reference": "a2cef64d5072b284b671ee8e06b8ebc38c2969e1"
+        }
+    ],
+    "packages-dev": null,
+    "aliases": [
+
+    ],
+    "minimum-stability": "dev",
+    "stability-flags": [
+
+    ]
+}

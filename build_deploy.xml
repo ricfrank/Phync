@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+
+<project name="Deploy" basedir="." default="deploy">
+    <property name="deploy.dir" value="${project.basedir}/Deploy" />
+    <taskdef classpath="${deploy.dir}" classname="Deploy" name="deploy" />
+
+    <target name="deploy">
+      <deploy message="sync me e daje!!" />
+    </target>
+</project>
