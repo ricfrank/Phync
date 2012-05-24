@@ -15,4 +15,10 @@ Open ```build_deploy.xml``` and following steps:
 * set option rsync command
 
 
+Local deploy
+============
 Run /path/to/your/project/vendor/phing/phing/bin/phing -f  build_deploy.xml deploy_temp  
+
+Remote deploy
+=============
+Run /path/to/your/project/vendor/phing/phing/bin/phing -f  build_deploy.xml deploy_staging  
