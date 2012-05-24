@@ -6,7 +6,9 @@ Phing extension for rsync.
 Setup
 =====
 
-Clone project and run composer ```php composer.phar install``` for dependencies (phing and phpunit).
+Download composer from https://github.com/composer/composer. and put it in your project root directory.
+Clone project and copy ```Deploy.php```, ```composer.json```, ```composer.lock``` and ```build_deploy.xml``` in your project root directory. 
+Run composer ```php composer.phar install``` for dependencies (phing and phpunit).
 Open ```build_deploy.xml``` and following steps:
 
 * set source directory
@@ -21,4 +23,6 @@ Run /path/to/your/project/vendor/phing/phing/bin/phing -f  build_deploy.xml depl
 
 Remote deploy
 =============
-Run /path/to/your/project/vendor/phing/phing/bin/phing -f  build_deploy.xml deploy_staging  
+Run /path/to/your/project/vendor/phing/phing/bin/phing -f  build_deploy.xml deploy_staging
+
+  
