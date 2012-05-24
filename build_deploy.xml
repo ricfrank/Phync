@@ -1,10 +1,14 @@
-<?xml version="1.0" ?>
-
-<project name="Deploy" basedir="." default="deploy">
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Deploy" basedir="." default="deploy_temp">
     <property name="deploy.dir" value="${project.basedir}/Deploy" />
+    <property name="deploy.dry_run" value="false" />
+    <property name="deploy.source" value="." />
+    
     <taskdef classpath="${deploy.dir}" classname="Deploy" name="deploy" />
-
-    <target name="deploy">
-      <deploy message="sync me e daje!!" />
+    <target name="deploy_temp">
+        <deploy source="${deploy.source}" destination="/tmp/test_deploy" dryRun="${deploy.dry_run}" />
+    </target>
+    <target name="deploy_staging">
+        <deploy source="${deploy.source}" destination="user@your_server:/path/your/project" dryRun="${deploy.dry_run}" />
     </target>
 </project>

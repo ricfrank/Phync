@@ -4,13 +4,10 @@ require_once 'vendor/phing/phing/classes/phing/Phing.php';
 
 class Deploy extends Task{
 
-    /**
-     * The message passed in the buildfile.
-     */
     private $destination = null;
     private $source = null;
     private $dryRun = true;
-    private $option = "-avz ";
+    private $option = "-aCvz ";
     private $command = "rsync ";
 
     public function setDestination($destination) {
@@ -34,23 +31,33 @@ class Deploy extends Task{
         $this->option = $option;
     }
 
-    /**
-     * The init method: Do init steps.
-     */
+    
     public function init() {
       // nothing to do here
     }
 
-    /**
-     * The main entry point method.
-     */
+   
     public function main() {
-      print($this->message);
+        $this->parseDryRunOption();
+        
+        $command = $this->buildCommand();
+        echo "Command ".$command.PHP_EOL.PHP_EOL;
+        
+        exec($command, $output, $returnCommandCode);
+        
+        $this->showCommandResult(array("commandOutput" => $output, "returnCommandCode" => $returnCommandCode));
+    }
+    
+    
+    public function showCommandResult($result) {
+        foreach ($result["commandOutput"] as $commandOutputValue) {
+            echo $commandOutputValue.PHP_EOL;
+        }
+        echo PHP_EOL."Status code: ".$result["returnCommandCode"].PHP_EOL;
     }
     
     /**
-     * La dry-run serve per effettuare una simulazione della sincronizzazione
-     * senza che effettivamente i dati vengano trasferiti 
+     *  Dry-run true for simulation
      */
     public function parseDryRunOption() {
         if( (bool) $this->dryRun) {
@@ -60,7 +67,7 @@ class Deploy extends Task{
     
     public function buildCommand() {
         if(empty($this->source) || empty($this->destination)) {
-            throw new BuildException("Gli attributi sorgente e destinazione sono obbligatori");
+            throw new BuildException("Parameters source and destination are required");
         }
         return $this->command.$this->option." "
                .escapeshellarg($this->source)." "

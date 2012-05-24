@@ -3,7 +3,7 @@ require_once '../Deploy.php';
 
 class deployTest extends PHPUnit_Framework_TestCase{
     function testParseRunOption() {
-        $expecOption = '-avz --dry-run';
+        $expecOption = '-aCvz --dry-run';
         
         $deploy = new Deploy();
         $deploy->parseDryRunOption();
@@ -12,7 +12,7 @@ class deployTest extends PHPUnit_Framework_TestCase{
     }
     
     function testCanBuildCommand() {
-        $option = "-avz ";
+        $option = "-aCvz ";
         $source = "pippo/pluto";
         $destination = "pippo@www.ciccio.com:/var/www/pluto";
         
@@ -30,6 +30,9 @@ class deployTest extends PHPUnit_Framework_TestCase{
         
     }
     
+    /**
+     *@expectedException BuildException 
+     */
     function testCantBuildCommand() {
         $option = "-avz ";
         $source = "";
@@ -45,7 +48,7 @@ class deployTest extends PHPUnit_Framework_TestCase{
         }
         catch (BuildException $e) {
             var_dump($e->getMessage());
-            
+            $this->assertEquals("Parameters source and destination are required", $e->getMessage());
         }
     }
     
