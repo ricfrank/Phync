@@ -6,6 +6,7 @@ class deployTest extends PHPUnit_Framework_TestCase{
         $expecOption = '-aCvz --dry-run';
         
         $deploy = new Deploy();
+        $deploy->setOption("-aCvz ");
         $deploy->parseDryRunOption();
         
         $this->assertEquals($expecOption, $deploy->getOption());
@@ -17,6 +18,7 @@ class deployTest extends PHPUnit_Framework_TestCase{
         $destination = "pippo@www.ciccio.com:/var/www/pluto";
         
         $deploy = new Deploy();
+        $deploy->setOption("-aCvz ");
         $deploy->setSource($source);
         $deploy->setDestination($destination);
         try{

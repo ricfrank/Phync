@@ -7,7 +7,7 @@ class Deploy extends Task{
     private $destination = null;
     private $source = null;
     private $dryRun = true;
-    private $option = "-aCvz ";
+    private $option = null;
     private $command = "rsync ";
 
     public function setDestination($destination) {
