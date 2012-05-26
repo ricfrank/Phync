@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Deploy" basedir="." default="deploy_temp">
-    <property name="deploy.dir" value="${project.basedir}/Deploy" />
-    <property name="deploy.dry_run" value="true" />
+        
+    <property name="deploy.timestamp_dir" value="${DSTAMP}${TSTAMP}" />
+    <property name="deploy.dir" value="${project.basedir}" />
+    <property name="deploy.dry_run" value="false" />
     <property name="deploy.source" value="." />
+    <property name="deploy.destination" value="/var/www" />
     <property name="deploy.option" value="-aCvz " />
     
     <taskdef classpath="${deploy.dir}" classname="Deploy" name="deploy" />
+    
     <target name="deploy_temp">
-        <deploy source="${deploy.source}" destination="/tmp/test_deploy" dryRun="${deploy.dry_run}" option="${deploy.option}"/>
+        <deploy source="${deploy.source}" destination="${deploy.destination}" dryRun="${deploy.dry_run}" option="${deploy.option}"/>
     </target>
+    
     <target name="deploy_staging">
-        <deploy source="${deploy.source}" destination="user@your_server:/path/your/project" dryRun="${deploy.dry_run}" />
+        <deploy source="${deploy.source}" destination="root@tcf.dyndns-web.com:${deploy.destination}" dryRun="${deploy.dry_run}" option="${deploy.option}"/>
     </target>
+    
 </project>

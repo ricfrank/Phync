@@ -1,5 +1,5 @@
 <?php
-require_once '../Deploy.php';
+require_once '../Deploy/Deploy.php';
 
 class deployTest extends PHPUnit_Framework_TestCase{
     function testParseRunOption() {
@@ -15,7 +15,7 @@ class deployTest extends PHPUnit_Framework_TestCase{
     function testCanBuildCommand() {
         $option = "-aCvz ";
         $source = "pippo/pluto";
-        $destination = "pippo@www.ciccio.com:/var/www/pluto";
+        $destination = "pippo@www.ciccio.com:/var/www/pluto/";
         
         $deploy = new Deploy();
         $deploy->setOption("-aCvz ");
@@ -23,8 +23,9 @@ class deployTest extends PHPUnit_Framework_TestCase{
         $deploy->setDestination($destination);
         try{
             $actualCommand = $deploy->buildCommand();
-            
-            $this->assertEquals("rsync ".$option." '".$source."' '".$destination."'", $actualCommand);
+           
+            $this->assertContains("'pippo@www.ciccio.com:/var/www/pluto/", $actualCommand);
+            $this->assertContains("rsync -aCvz  'pippo/pluto'", $actualCommand);
         }
         catch (BuildException $e) {
             echo $e->getMessage;
@@ -38,7 +39,7 @@ class deployTest extends PHPUnit_Framework_TestCase{
     function testCantBuildCommand() {
         $option = "-avz ";
         $source = "";
-        $destination = "pippo@www.ciccio.com:/var/www/pluto";
+        $destination = "pippo@www.ciccio.com:/var/www/pluto/";
         
         $deploy = new Deploy();
         $deploy->setSource($source);
@@ -53,5 +54,4 @@ class deployTest extends PHPUnit_Framework_TestCase{
             $this->assertEquals("Parameters source and destination are required", $e->getMessage());
         }
     }
-    
 }

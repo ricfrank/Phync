@@ -1,7 +1,5 @@
 <?php
 
-require_once 'vendor/phing/phing/classes/phing/Phing.php';
-
 class Deploy extends Task{
 
     private $destination = null;
@@ -11,7 +9,7 @@ class Deploy extends Task{
     private $command = "rsync ";
 
     public function setDestination($destination) {
-        $this->destination = $destination;
+        $this->destination = $destination."/".$this->getDestinationWithTimestamp();
     }
     
     public function setSource($source) {
@@ -31,11 +29,9 @@ class Deploy extends Task{
         $this->option = $option;
     }
 
-    
     public function init() {
       // nothing to do here
     }
-
    
     public function main() {
         $this->parseDryRunOption();
@@ -63,6 +59,11 @@ class Deploy extends Task{
         if( (bool) $this->dryRun) {
             $this->option .= "--dry-run";
         }
+    }
+
+    public function getDestinationWithTimestamp() {
+        $date = new DateTime();
+        return $date->getTimestamp(); 
     }
     
     public function buildCommand() {
